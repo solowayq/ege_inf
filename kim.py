@@ -46,3 +46,39 @@ print(l_n)
 from ipaddress import *
 net = ip_network("205.99.68.249/255.255.248.0", 0)
 print(net[-1])
+# ==================== 14 ====================
+def dec_to_n(a, n):
+    s = 0
+    while a > 0:
+        if a % n == 0:
+            s += 1
+        a //= n
+    return s
+
+tt = 0
+for x in range(1, 3001):
+    k = 9 * 11 ** 210 + 8 * 11 ** 150 - x
+    if dec_to_n(k, 11) == 60:
+        tt = x
+print(tt)
+# ==================== 15 ====================
+def f(x, y, A):
+    n1 = x + y <= 30
+    n2 = y <= x + 2
+    n3 = y >= A
+    return n1 or n2 or n3 
+
+for A in range(1, 1000):
+    t = all(f(x, y, A) for x in range(1, 100)
+        for y in range(1, 100))
+    if t == True:
+        print(A, t)
+# ==================== 16 ====================
+from sys import setrecursionlimit
+setrecursionlimit(100000)
+def G(n):
+    if n < 10:
+        return 2 * n
+    return G(n - 2) + 1  
+
+print(2 * (G(15548 - 3) + 8))
